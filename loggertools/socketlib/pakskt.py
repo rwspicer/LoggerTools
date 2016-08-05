@@ -29,16 +29,9 @@ Copyright 2016 Rawser Spicer, Uinversity of Alaska Fairbanks
     You should have received a copy of the GNU General Public License
     along with LoggerTools.  If not, see <http://www.gnu.org/licenses/>.
 """
-try:
-    import pakbus as pkb
-except ImportError:
-    print ""
-    print "<<<<<<IMPORTANT>>>>>>"
-    print "please download PyPak http://sourceforge.net/projects/pypak/files/"
-    print "and install pakbus.py to your python path varibles or make a symlink to it"
-    print "in your csv_utilities/OCS directory" 
-    print "<<<<<<>>>>>>"
-    print ""
+
+import pakbus as pkb
+
 
 class pakskt:
     """ 
