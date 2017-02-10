@@ -54,7 +54,7 @@ class Tables(object):
         """
         return self.table_list
         
-    def download_table (self, table, start_with = 0):
+    def download_table (self, table, start_with = 0, show = False):
         """ 
         download a table
         
@@ -67,7 +67,7 @@ class Tables(object):
         named 'table'
         """
         self.conn.connect()
-        temp = self.conn().get_table_data(table, start_with)
+        temp = self.conn().get_table_data(table, start_with, show)
         self.tables[table] = pks.correct_table_dates(temp)[0]
         
     def download_list (self, table_list):
@@ -213,7 +213,7 @@ class Tables(object):
             text += '\n'
         return text
         
-    def save_table (self, table, directory, logger_name):
+    def save_table (self, table, directory, logger_name, show = False):
         """
         save a table
         """
@@ -223,7 +223,7 @@ class Tables(object):
         
         if last_rec == -1:
             # DNE
-            self.download_table(table)
+            self.download_table(table, show = show)
             header = self.generate_file_header(table, logger_name)
             body = self.generate_file_body(table)
             with open (f_path, 'w') as dat:
@@ -235,14 +235,14 @@ class Tables(object):
             f_name2 = logger_name + '_' + table + "_backup-" + d_tag + '.dat'
             shutil.copy(f_path, os.path.join(directory,f_name2 ))
             # Make new
-            self.download_table(table)
+            self.download_table(table, show = show)
             header = self.generate_file_header(table, logger_name)
             body = self.generate_file_body(table)
             with open (f_path, 'w') as dat:
                 dat.write(header + body)
         else:
             # append
-            self.download_table(table, last_rec+1)
+            self.download_table(table, last_rec+1, show = show)
             body = self.generate_file_body(table)
             with open (f_path, 'a') as dat:
                 dat.write(body)

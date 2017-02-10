@@ -117,10 +117,15 @@ class pakskt:
         
         return units, intervals 
     
-    def get_table_data (self, table_name, last_recived = 0):
+    def get_table_data (self, table_name, last_recived = 0, show = False):
         """ Function doc """
         table = []
         while True:
+            if show:
+                try:
+                    print "Last Record Recived: " + str(table[-1]['RecNbr'])
+                except IndexError:
+                    pass
             try:
                 data, is_more = pkb.collect_data(self.socket,
                                              self.logger_id,
@@ -129,6 +134,7 @@ class pakskt:
                                              table_name,
                                              CollectMode = 0x04,
                                              P1 = last_recived)
+                
             except KeyError:
                 print last_recived
                 continue
@@ -140,6 +146,8 @@ class pakskt:
                 last_recived += data[0]['NbrOfRecs']
             except:
                 break
+            #~ if is_more == 0:
+                #~ break
         return table
     #### end ####    
     

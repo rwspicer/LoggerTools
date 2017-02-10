@@ -65,7 +65,7 @@ def fetch ():
     #~ logger.download_list(tables)
     
     for t in tables:
-        logger.save_table(t, directory, station_name)
+        logger.save_table(t, directory, station_name, show = True)
         
     
     
