@@ -16,6 +16,15 @@ Host, port, logger id, and station name, should be provided in that order
 --out=path_to_out_dir (optional, Default current directory) relative path to output directory. 
 
 
+## List Tables
+list_tables.py lists tables on logger
+
+### Example
+./loggertools/list_tables.py host port logger_id
+
+Host, port, logger id, and station name, should be provided in that order
+
+
 ### Sources
 The core of LoggerTools is built around PyPak:
     (c) 2009 Dietrich Feist, Max Planck Institute for Biogeochemistry, Jena Germany
