@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
-fetch.py 
-Ross Spicer
+list_tables.py 
+Rawser Spicer
 
 Copyright 2016 Rawser Spicer, University of Alaska Fairbanks
 
@@ -25,53 +25,30 @@ import sys
 import table
 import connect
 
-def fetch ():
+def list_tables ():
     """
-    download and save or update tables from the logger  
+    list tables on logger
     """
     arguments = sys.argv[1:]
     if len(arguments) == 0:
-        print ("usage: ./fetch.py <host> <port> <logger id> <station name> "
-               "[--tables=table1,table2] [--out=path_to_out_dir]")
+        print ("usage: ./list_tables.py <host> <port> <logger id> ")
         return
     
     host = arguments[0]
     port = int(arguments[1])
     logger_id = int(arguments[2])
-    station_name = str(arguments[3])
-    optional = {}
-    for arg in arguments[4:]:
-        arg = arg.split('=')
-        optional[arg[0].replace('--','')] = arg[1]
-        
-    try:
-        directory = optional['out']
-    except KeyError:
-        directory = './'
     
     print "Connecting to logger... "
 
     conn = connect.Connection(host = host, port = port, logger_id = logger_id)
     
     logger = table.Tables(conn)
-    #~ print logger
     
-    print "Fetching data from logger... "
-    try:
-        tables = optional['tables']
-        tables = tables.split(',')
-    except KeyError:
-        tables = logger.list_tables()
-    #~ logger.download_list(tables)
-    
-    for t in tables:
-        logger.save_table(t, directory, station_name, show = True)
-        
-    
-    
-    
-    
-    
+    print "Fetching tables from logger... "
+
+    tables = logger.list_tables()
+    print tables 
+
 
 if __name__ == "__main__":
-    fetch()
+    list_tables()
