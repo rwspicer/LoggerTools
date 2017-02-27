@@ -102,7 +102,7 @@ class Tables(object):
             except AttributeError:
                 pass
 #        self.conn.connect()
-	self.conn().open_socket()
+        self.conn().open_socket()
         self.program_info = dict(self.conn().get_program_status())
 #        while self.program_info == {}:
 #            self.program_info = self.conn().get_program_status()
@@ -162,7 +162,7 @@ class Tables(object):
         q = lambda x: '"' + str(x) + '"'
         
         info = self.get_program_info()
-	print info
+        #print info
         header_r0 = '"TOA5"' + d + \
                  q(logger_name) + d + \
                  q(info["OSVer"].split('.')[0])  + d + \
