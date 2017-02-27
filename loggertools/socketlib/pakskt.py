@@ -119,7 +119,9 @@ class pakskt:
     
     def get_table_data (self, table_name, last_recived = 0, show = False):
         """ Function doc """
+        print "GETTING DATA"
         table = []
+        self.open_socket()
         while True:
             if show:
                 try:
@@ -127,6 +129,7 @@ class pakskt:
                 except IndexError:
                     pass
             try:
+                #self.open_socket()
                 data, is_more = pkb.collect_data(self.socket,
                                              self.logger_id,
                                              self.cpu_id,
@@ -162,6 +165,7 @@ class pakskt:
 
     def get_program_status (self):
         """ Function doc """
+	self.open_socket()
         packet, trans_no = pkb.pkt_getprogstat_cmd(self.logger_id, self.cpu_id)
         pkb.send(self.socket, packet)
         header, message = pkb.wait_pkt(self.socket, 

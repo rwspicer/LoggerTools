@@ -41,20 +41,23 @@ class Connection (object):
         connect to the data logger
         """
         self.connection.open_socket()
+        self.connection.ping()
+        return True
         
         ### wake up the logger
         pks.pkb.send(self.connection.socket,"")
         pks.pkb.send(self.connection.socket,"")
         pks.pkb.send(self.connection.socket,"")
         
-        rsp = self.connection.ping()
+#        rsp = self.connection.ping()
         
-        try:
-            rsp["MsgType"]
-            return True
-        except KeyError:
-            return False
-            
+#        try:
+#            rsp["MsgType"]
+#            return True
+#        except KeyError:
+#            return False
+        return True 
+           
     def ping(self):
         """
         ping the data logger

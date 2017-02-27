@@ -1488,6 +1488,7 @@ def collect_data(s, DstNodeId, SrcNodeId, TableDef, TableName, FieldNames = [], 
     # Send collect data request
     pkt, TranNbr = pkt_collectdata_cmd(DstNodeId, SrcNodeId, tablenbr, tabledefsig, FieldNbr = fieldnbr, CollectMode = CollectMode, P1 = P1, P2 = P2, SecurityCode = SecurityCode)
     send(s, pkt)
+    print "WAITING"
     hdr, msg = wait_pkt(s, DstNodeId, SrcNodeId, TranNbr)
     RecData, MoreRecsExist = parse_collectdata(msg['RecData'], TableDef, FieldNbr = fieldnbr)
 

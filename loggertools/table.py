@@ -66,7 +66,8 @@ class Tables(object):
             self.tables[table] is a list of rows from the logger table 
         named 'table'
         """
-        self.conn.connect()
+#        self.conn.connect()
+        self.conn().open_socket()
         temp = self.conn().get_table_data(table, start_with, show)
         self.tables[table] = pks.correct_table_dates(temp)[0]
         
@@ -100,7 +101,8 @@ class Tables(object):
                 return self.program_info 
             except AttributeError:
                 pass
-        self.conn.connect()
+#        self.conn.connect()
+	self.conn().open_socket()
         self.program_info = self.conn().get_program_status()
         return self.program_info 
     
@@ -158,6 +160,7 @@ class Tables(object):
         q = lambda x: '"' + str(x) + '"'
         
         info = self.get_program_info()
+	print info
         header_r0 = '"TOA5"' + d + \
                  q(logger_name) + d + \
                  q(info["OSVer"].split('.')[0])  + d + \
