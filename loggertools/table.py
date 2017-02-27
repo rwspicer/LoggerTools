@@ -103,7 +103,9 @@ class Tables(object):
                 pass
 #        self.conn.connect()
 	self.conn().open_socket()
-        self.program_info = self.conn().get_program_status()
+        self.program_info = dict(self.conn().get_program_status())
+#        while self.program_info == {}:
+#            self.program_info = self.conn().get_program_status()
         return self.program_info 
     
     def get_table_header_data (self, table):
@@ -220,10 +222,11 @@ class Tables(object):
         """
         save a table
         """
+        self.get_program_info()
         f_name = logger_name + '_' + table +'.dat'
         f_path = os.path.join(directory,f_name)
         last_rec = self.get_file_last_record(f_path)
-        
+#        print self.program_info        
         if last_rec == -1:
             # DNE
             self.download_table(table, show = show)
