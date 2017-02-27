@@ -23,6 +23,7 @@ import socketlib.pakskt as pks
 import os
 import shutil
 from datetime import datetime
+import math
 
 class Tables(object):
     """
@@ -214,7 +215,10 @@ class Tables(object):
                     data = [data]
                 for idx in range(len(data)):
                     datum = data[idx]
-                    text += d + str(float(datum)) 
+                    if math.isnan(float(datum)):
+                        text += d + str(6999) 
+                    else:
+                        text += d + str(float(datum)) 
             text += '\n'
         return text
         
