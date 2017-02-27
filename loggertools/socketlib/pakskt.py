@@ -119,7 +119,7 @@ class pakskt:
     
     def get_table_data (self, table_name, last_recived = 0, show = False):
         """ Function doc """
-        print "GETTING DATA"
+        #~ print "GETTING DATA"
         table = []
         self.open_socket()
         while True:

@@ -44,19 +44,21 @@ class Connection (object):
         self.connection.ping()
         return True
         
-        ### wake up the logger
-        pks.pkb.send(self.connection.socket,"")
-        pks.pkb.send(self.connection.socket,"")
-        pks.pkb.send(self.connection.socket,"")
         
-#        rsp = self.connection.ping()
+        #### maybe this is important but it seems to work with out it.
+        ### wake up the logger 
+        #~ pks.pkb.send(self.connection.socket,"")
+        #~ pks.pkb.send(self.connection.socket,"")
+        #~ pks.pkb.send(self.connection.socket,"")
         
-#        try:
-#            rsp["MsgType"]
-#            return True
-#        except KeyError:
-#            return False
-        return True 
+        #~ rsp = self.connection.ping()
+        
+        #~ try:
+            #~ rsp["MsgType"]
+            #~ return True
+        #~ except KeyError:
+            #~ return False
+        #~ return True 
            
     def ping(self):
         """
