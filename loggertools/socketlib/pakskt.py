@@ -31,6 +31,7 @@ Copyright 2016 Rawser Spicer, Uinversity of Alaska Fairbanks
 """
 
 import pakbus as pkb
+import struct
 
 
 class pakskt:
@@ -140,6 +141,9 @@ class pakskt:
                 
             except KeyError:
                 print last_recived
+                continue
+            except struct.error:
+                print "struct error"
                 continue
                 
             #~ print data
