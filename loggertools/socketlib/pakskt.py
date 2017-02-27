@@ -143,8 +143,7 @@ class pakskt:
                 print last_recived
                 continue
             except struct.error:
-                print "struct error"
-                continue
+                return table
                 
             #~ print data
             try:
