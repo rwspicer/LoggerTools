@@ -206,7 +206,7 @@ class Tables(object):
             time = row['TimeOfRec']
             rec_num = row['RecNbr']
     
-            text += q(time) + d + q(rec_num)
+            text += q(time) + d + str(int(rec_num)) 
             
             for field in self.get_table_column_order(table):
                 data = row['Fields'][field]
@@ -214,7 +214,7 @@ class Tables(object):
                     data = [data]
                 for idx in range(len(data)):
                     datum = data[idx]
-                    text += d + q(datum) 
+                    text += d + str(float(datum)) 
             text += '\n'
         return text
         
